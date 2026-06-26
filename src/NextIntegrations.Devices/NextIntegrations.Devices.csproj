@@ -15,11 +15,12 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RootNamespace>NextIntegrations.Devices</RootNamespace>
     <AssemblyName>NextIntegrations.Devices</AssemblyName>
-    <!-- SDK/package identity -->
+    <!-- SDK/package identity. Bump this on every release; consumers pin the version they use. -->
     <PackageId>NextIntegrations.Devices</PackageId>
-    <Version>1.0.0</Version>
+    <Version>0.1.0</Version>
     <Authors>horeca.az</Authors>
     <Description>Shared device-integration SDK (registry, protocols, transports, probe, ESC/POS) for the Horeca POS heads.</Description>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
