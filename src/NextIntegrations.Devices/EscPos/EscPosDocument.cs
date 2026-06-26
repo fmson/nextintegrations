@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text;
+using NextIntegrations.Common;
 
 namespace NextIntegrations.Devices.EscPos;
 
@@ -44,7 +45,8 @@ public static class EscPosDocument
         buffer.Write(AlignLeft);
 
         WriteLine(buffer, $"Cek: {receipt.DocumentNumber}");
-        WriteLine(buffer, receipt.CreatedAt.LocalDateTime.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
+        DateTimeOffset created = receipt.CreatedAt.ToLocalTime();
+        WriteLine(buffer, $"{HorecaFormats.Date(created)} {HorecaFormats.Time(created)}");
         WriteLine(buffer, $"Kassir: {receipt.Cashier}");
         WriteLine(buffer, new string('-', width));
 
@@ -152,7 +154,7 @@ public static class EscPosDocument
         WriteLine(buffer, "TEST CAP");
         buffer.Write(AlignLeft);
         WriteLine(buffer, new string('-', width));
-        WriteLine(buffer, DateTime.Now.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
+        WriteLine(buffer, $"{HorecaFormats.Date(DateTimeOffset.Now)} {HorecaFormats.Time(DateTimeOffset.Now)}");
         WriteLine(buffer, "Printer ve qutu testi OK");
         buffer.Write([0x0A, 0x0A, 0x0A]);
         buffer.Write(FeedAndCut);

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    NextIntegrations.Common — shared cross-cutting helpers for the Horeca apps + integrations.
+    Currently: HorecaFormats, the single source of truth for display formats (date/time), read from one
+    shared config file so the format can be changed in one place. No app-specific or heavy dependencies.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+    <RootNamespace>NextIntegrations.Common</RootNamespace>
+    <AssemblyName>NextIntegrations.Common</AssemblyName>
+    <PackageId>NextIntegrations.Common</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>horeca.az</Authors>
+    <Description>Shared formatting/config helpers (HorecaFormats) for the Horeca POS heads + integrations.</Description>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts</PackageOutputPath>
+  </PropertyGroup>
+
+</Project>

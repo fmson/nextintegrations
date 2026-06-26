@@ -13,20 +13,30 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Audit direct dependencies only (matches the consuming apps); transitive native SQLite
+         libraries are governed solution-wide, not by this SDK. -->
+    <NuGetAuditMode>direct</NuGetAuditMode>
     <RootNamespace>NextIntegrations.Devices</RootNamespace>
     <AssemblyName>NextIntegrations.Devices</AssemblyName>
     <!-- SDK/package identity. Bump this on every release; consumers pin the version they use. -->
     <PackageId>NextIntegrations.Devices</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>horeca.az</Authors>
     <Description>Shared device-integration SDK (registry, protocols, transports, probe, ESC/POS) for the Horeca POS heads.</Description>
     <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Shared formatting (HorecaFormats) so the integration's dates honour the one config too. -->
+    <ProjectReference Include="..\NextIntegrations.Common\NextIntegrations.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
     <!-- Serial/virtual-COM transport (Windows/Linux/macOS). USB ESC/POS printers usually expose a COM/tty port. -->
     <PackageReference Include="System.IO.Ports" Version="10.0.9" />
+    <!-- Shared device "baza" database (the registry of configured device integrations). -->
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
