@@ -8,7 +8,7 @@ namespace NextIntegrations.Tests;
 /// </summary>
 internal sealed class StubHttpMessageHandler : HttpMessageHandler
 {
-    private readonly Queue<string> _responses = new();
+    private readonly Queue<Response> _responses = new();
 
     /// <summary>The captured requests, in the order they were sent.</summary>
     public List<CapturedRequest> Requests { get; } = [];
@@ -16,7 +16,14 @@ internal sealed class StubHttpMessageHandler : HttpMessageHandler
     /// <summary>Queues a JSON body to return for the next request (HTTP 200).</summary>
     public StubHttpMessageHandler EnqueueJson(string json)
     {
-        _responses.Enqueue(json);
+        _responses.Enqueue(new Response(HttpStatusCode.OK, json));
+        return this;
+    }
+
+    /// <summary>Queues a response with an explicit status code and body for the next request.</summary>
+    public StubHttpMessageHandler EnqueueResponse(HttpStatusCode statusCode, string body)
+    {
+        _responses.Enqueue(new Response(statusCode, body));
         return this;
     }
 
@@ -30,12 +37,14 @@ internal sealed class StubHttpMessageHandler : HttpMessageHandler
 
         Requests.Add(new CapturedRequest(request.Method, request.RequestUri, body));
 
-        string responseJson = _responses.Count > 0 ? _responses.Dequeue() : "{\"code\":0}";
-        return new HttpResponseMessage(HttpStatusCode.OK)
+        Response response = _responses.Count > 0 ? _responses.Dequeue() : new Response(HttpStatusCode.OK, "{\"code\":0}");
+        return new HttpResponseMessage(response.StatusCode)
         {
-            Content = new StringContent(responseJson, System.Text.Encoding.UTF8, "application/json"),
+            Content = new StringContent(response.Body, System.Text.Encoding.UTF8, "application/json"),
         };
     }
+
+    private sealed record Response(HttpStatusCode StatusCode, string Body);
 }
 
 /// <summary>A single captured outbound request.</summary>
