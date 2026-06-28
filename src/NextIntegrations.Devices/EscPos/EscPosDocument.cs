@@ -69,6 +69,11 @@ public static class EscPosDocument
         WriteLine(buffer, TwoColumns("YEKUN", Amount(receipt.Total), width));
         buffer.Write(BoldOff);
 
+        if (receipt.BonusPaid > 0)
+        {
+            WriteLine(buffer, TwoColumns("Bonusla", Amount(receipt.BonusPaid), width));
+        }
+
         WriteLine(buffer, TwoColumns("Odenis", receipt.PaymentMethod, width));
         WriteLine(buffer, TwoColumns("Odenilen", Amount(receipt.AmountPaid), width));
         WriteLine(buffer, TwoColumns("Qaytarilan", Amount(receipt.Change), width));

@@ -33,6 +33,9 @@ public sealed record EscPosReceipt
 
     public string PaymentMethod { get; init; } = string.Empty;
 
+    /// <summary>Loyalty bonus tendered on this sale (major units; 0 = none).</summary>
+    public decimal BonusPaid { get; init; }
+
     public decimal AmountPaid { get; init; }
 
     public decimal Change { get; init; }
