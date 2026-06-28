@@ -20,9 +20,9 @@
     <AssemblyName>NextIntegrations.Devices</AssemblyName>
     <!-- SDK/package identity. Bump this on every release; consumers pin the version they use. -->
     <PackageId>NextIntegrations.Devices</PackageId>
-    <Version>0.6.0</Version>
+    <Version>0.7.0</Version>
     <Authors>horeca.az</Authors>
-    <Description>Shared device-integration SDK (registry, protocols, transports, probe, ESC/POS, Omnisoft fiscal client, price-checker host, scale PLU export, HTTP SMS gateway) for the Horeca POS heads.</Description>
+    <Description>Shared device-integration SDK (registry, protocols, transports, probe, ESC/POS, Omnisoft fiscal client, price-checker host, scale PLU export, HTTP SMS gateway, EAN-13/variable-measure barcode format) for the Horeca POS heads.</Description>
     <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts</PackageOutputPath>
   </PropertyGroup>
 
