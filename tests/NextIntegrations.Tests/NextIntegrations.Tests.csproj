@@ -12,6 +12,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0" />
+    <!-- Directly referenced so the NBA transport test can host an in-process ZeroMQ REP double. -->
+    <PackageReference Include="NetMQ" Version="4.0.1.13" />
   </ItemGroup>
 
   <ItemGroup>
